@@ -17,9 +17,3 @@ SpringBoot + Maven + Mybatis + PageHelper + MySQL + Redis
 - [前台系统](https://github.com/yhuihu/yhhu_blog_front)
 
 > 注意：项目的图片上传到七牛云上了，所以图片路径为域名形式，可以根据自己的需求改写保存到本地
-
-## BlahBlah
-
-如果本项目对您学习Vue或SpringBoot等有所帮助的话，请帮忙点颗⭐哦😁！
-
-如果您对本项目有什么意见或建议，也欢迎批评指正。
