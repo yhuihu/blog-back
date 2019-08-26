@@ -2,7 +2,7 @@ package com.blog.blogBack.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.io.Serializable;
 @Data
 public class Link extends BaseEntity implements Serializable {

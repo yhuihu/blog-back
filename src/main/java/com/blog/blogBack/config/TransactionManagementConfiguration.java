@@ -8,8 +8,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-import javax.sql.DataSource;
-
 /**
  * 对标spring-service里面的transactionManager
  * 继承TransactionManagementConfigurer是因为开启annotation-driven

@@ -1,20 +1,16 @@
 package com.blog.blogBack.util;
 
 import com.alibaba.fastjson.JSON;
-import com.blog.blogBack.config.WebConfig;
 import com.blog.blogBack.framework.Result;
 import com.blog.blogBack.framework.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 /**

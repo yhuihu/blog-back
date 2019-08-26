@@ -1,13 +1,10 @@
 package com.blog.blogBack.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.blog.blogBack.entity.Reader;
-import com.blog.blogBack.entity.User;
 import com.blog.blogBack.framework.Result;
 import com.blog.blogBack.framework.ResultCode;
 import com.blog.blogBack.service.ReaderService;
-import com.blog.blogBack.service.UserService;
 import com.blog.blogBack.util.IpAddressUtil;
 import com.blog.blogBack.util.Tools;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +14,8 @@ import me.zhyd.oauth.exception.AuthException;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthToken;
-import me.zhyd.oauth.request.*;
+import me.zhyd.oauth.request.AuthGithubRequest;
+import me.zhyd.oauth.request.AuthRequest;
 import me.zhyd.oauth.utils.AuthStateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

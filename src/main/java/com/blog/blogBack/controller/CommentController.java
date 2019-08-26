@@ -13,15 +13,12 @@ import com.blog.blogBack.service.CommentService;
 import com.blog.blogBack.service.ReaderService;
 import com.blog.blogBack.service.UserService;
 import com.blog.blogBack.util.EmailTool;
-import com.blog.blogBack.util.IpAddressUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;

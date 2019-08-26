@@ -5,12 +5,8 @@ import com.blog.blogBack.entity.User;
 import com.blog.blogBack.framework.service.AbstractService;
 import com.blog.blogBack.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 import static com.blog.blogBack.util.Encryption.verify;
 

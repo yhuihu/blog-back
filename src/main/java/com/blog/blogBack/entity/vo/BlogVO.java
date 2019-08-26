@@ -1,6 +1,5 @@
 package com.blog.blogBack.entity.vo;
 
-import com.blog.blogBack.entity.Blog;
 import lombok.Data;
 
 import java.io.Serializable;

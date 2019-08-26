@@ -2,6 +2,7 @@ package com.blog.blogBack.config;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.blog.blogBack.framework.Result;
 import com.blog.blogBack.framework.ResultCode;
 import com.blog.blogBack.framework.ServiceException;
@@ -19,9 +20,10 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;

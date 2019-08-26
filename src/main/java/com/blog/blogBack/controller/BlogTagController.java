@@ -1,4 +1,5 @@
 package com.blog.blogBack.controller;
+
 import com.blog.blogBack.entity.BlogTag;
 import com.blog.blogBack.framework.Result;
 import com.blog.blogBack.framework.ResultGenerator;
@@ -7,9 +8,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
