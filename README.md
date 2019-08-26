@@ -4,7 +4,8 @@
 本博客前后端分离的轻量级个人博客系统。
 
 本博客系统由后端服务器系统、后台管理系统、前台系统三个子系统组成。其中，后端服务系统基于SpringBoot，后台管理系统和前台系统均基于Vue。每个子系统的详细内容可参看相应的Github地址。
-
+## 预览地址
+[blog.yhhu.xyz](http://blog.yhhu.xyz)
 ## 技术栈
 
 SpringBoot + Maven + Mybatis + PageHelper + MySQL + Redis
