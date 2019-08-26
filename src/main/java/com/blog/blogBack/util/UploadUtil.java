@@ -15,10 +15,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 @Component
 public class UploadUtil {
-    private static final String accessKey = "WFu4RDKywdcDlQCYJhcBaQh0uZlHik79PFo3WCRh";
-    private static final String secretKey = "Zx3CSdhhJZMIetxUiRp2rBqCtgSp7Qf6Sb8EiseP";
-    private static final String bucket = "vueblog";
-    private static final String DOMAIN = "http://yhhu.xyz";
+    private static final String accessKey = "";
+    private static final String secretKey = "";
+    private static final String bucket = "";
+    private static final String DOMAIN = "";
 
     /**
      * 将图片上传到七牛云
