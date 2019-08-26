@@ -1,6 +1,24 @@
-# blog-back
-个人博客api
-## 注意事项
-#### 启动前请注意application.properties的配置
-#### 本后端系统用到了redis，需要自行配置一下
-#### 文件上传使用的是七牛云，自行到util/UploadUtil上添加自己七牛云信息或改写成图片存储到本地
+# yhhu_blog
+## 简介
+
+本博客前后端分离的轻量级个人博客系统。
+
+本博客系统由后端服务器系统、后台管理系统、前台系统三个子系统组成。其中，后端服务系统基于SpringBoot，后台管理系统和前台系统均基于Vue。每个子系统的详细内容可参看相应的Github地址。
+
+## 技术栈
+
+SpringBoot + Maven + Mybatis + PageHelper + MySQL + Redis
+
+## 传送门
+
+- [后端服务系统](https://github.com/yhuihu/blog-back)
+- [后台管理系统](https://github.com/yhuihu/yhhu_blog_admin)
+- [前台系统](https://github.com/yhuihu/yhhu_blog_front)
+
+> 注意：项目的图片上传到七牛云上了，所以图片路径为域名形式，可以根据自己的需求改写保存到本地
+
+## BlahBlah
+
+如果本项目对您学习Vue或SpringBoot等有所帮助的话，请帮忙点颗⭐哦😁！
+
+如果您对本项目有什么意见或建议，也欢迎批评指正。
