@@ -62,6 +62,10 @@ public class AdminAdminController {
         String ipAddr = IpAddressUtil.getIpAdrress(request);
         //密码错误次数
         Integer count = (Integer) valueOperations.get(ipAddr);
+        if (count != null && count == 5) {
+            long time = redisTemplate.getExpire(ipAddr);
+            return ResultGenerator.genFailResult("密码错误次数过多，请" + time + "秒后重试");
+        }
         User admin = adminService.Login(username, password);
         if (admin != null) {
             if (valueOperations.get(ipAddr) != null) {
@@ -97,7 +101,7 @@ public class AdminAdminController {
 
     @PostMapping("/logout")
     public Result logout(HttpServletRequest request) {
-        redisTemplate.opsForList().remove(request.getHeader("X-Token"),0,IpAddressUtil.getIpAdrress(request));
+        redisTemplate.opsForList().remove(request.getHeader("X-Token"), 0, IpAddressUtil.getIpAdrress(request));
         return ResultGenerator.genSuccessResult("注销成功！");
     }
 }
