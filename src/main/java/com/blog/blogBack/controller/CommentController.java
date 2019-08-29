@@ -1,17 +1,11 @@
 package com.blog.blogBack.controller;
 
-import com.blog.blogBack.entity.Blog;
-import com.blog.blogBack.entity.Comment;
-import com.blog.blogBack.entity.Reader;
-import com.blog.blogBack.entity.User;
+import com.blog.blogBack.entity.*;
 import com.blog.blogBack.entity.dto.CommentReaderDTO;
 import com.blog.blogBack.entity.vo.CommentVO;
 import com.blog.blogBack.framework.Result;
 import com.blog.blogBack.framework.ResultGenerator;
-import com.blog.blogBack.service.BlogService;
-import com.blog.blogBack.service.CommentService;
-import com.blog.blogBack.service.ReaderService;
-import com.blog.blogBack.service.UserService;
+import com.blog.blogBack.service.*;
 import com.blog.blogBack.util.EmailTool;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -44,6 +38,9 @@ public class CommentController {
 
     @Autowired
     private EmailTool emailTool;
+
+    @Autowired
+    SendCommentService sendCommentService;
 
     @PostMapping("/add")
     public Result add(CommentReaderDTO commentReaderDTO, HttpServletRequest request) {
@@ -84,19 +81,29 @@ public class CommentController {
         // 更新评论数
         blog.setCommentCount(blog.getCommentCount() + 1);
         blogService.update(blog);
-
         // 发送邮件通知管理员和被回复者
         User admin = userService.findById(1);
-        String content = commentReaderDTO.getName() + "在《" + blog.getTitle() + "》下回复\n" + commentReaderDTO.getContent();
-        emailTool.sendSimpleMail(admin.getEmail(), "Blog评论", content);
-        if (receiver != null) { // 仅发给管理员
-            // 通知被回复者
-            // 仅当receiver开启了接受邮件并且填写了邮箱时发送邮件
-            if ((receiver.getInform() == 1) && StringUtils.isNotBlank(receiver.getEmail())) {
-                content = commentReaderDTO.getName() + "在《" + blog.getTitle() + "》下回复了你:\n" + commentReaderDTO.getContent();
-                emailTool.sendSimpleMail(receiver.getEmail(), "Blog评论回复通知", content);
-            }
-        }
+        SendComment sendComment=new SendComment();
+        sendComment.setEmail(admin.getEmail());
+        sendComment.setTitle(blog.getTitle());
+        sendComment.setCommentId(comment.getId());
+        sendComment.setBlogId(blog.getId());
+        sendComment.setContent(commentReaderDTO.getContent());
+        sendComment.setReaderName(commentReaderDTO.getName());
+        sendCommentService.save(sendComment);
+//        String content = commentReaderDTO.getName() + "在《" + blog.getTitle() + "》下回复--------"
+//                + commentReaderDTO.getContent() + "--------" +
+//                "该条博客地址：http://blog.yhhu.xyz/#/blog/" + blog.getId();
+//        emailTool.sendSimpleMail(admin.getEmail(), "Blog评论", content);
+//        if (receiver != null) { // 仅发给管理员
+//            // 通知被回复者
+//            // 仅当receiver开启了接受邮件并且填写了邮箱时发送邮件
+//            if ((receiver.getInform() == 1) && StringUtils.isNotBlank(receiver.getEmail())) {
+//                content = commentReaderDTO.getName() + "在《" + blog.getTitle() + "》下回复了你:\n" + commentReaderDTO.getContent()
+//                        + "\n" +"该条博客地址：http://blog.yhhu.xyz/#/blog/" + blog.getId();
+//                emailTool.sendSimpleMail(receiver.getEmail(), "Blog评论回复通知", content);
+//            }
+//        }
         return ResultGenerator.genSuccessResult();
     }
 
