@@ -13,7 +13,7 @@ public class CommentVO implements Serializable {
     private String readerName;
     private String readerAvatar;
     private String content;
-
+    private int readerId;
     private Date receiverDate;
     private String receiverName;
     private String receiverAvatar;

@@ -128,14 +128,12 @@ public class CommentController {
     public Result listByBlogId(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size, Integer blogId) {
         if (blogId == null) return ResultGenerator.genFailResult("blogId不能为空！");
         if (blogService.findById(blogId) == null) return ResultGenerator.genFailResult("不存在id为" + blogId + "的博客！");
-
         PageHelper.startPage(page, size, "comment_date desc");
         List<Comment> list = commentService.findAllByBlogId(blogId);
         List<CommentVO> result = new ArrayList<>();
         for (Comment comment : list) {
             result.add(getCommentVo(comment));
         }
-
         // 给前端的是VO，但需要分页
         PageInfo pageInfo = new PageInfo(list);
         pageInfo.setList(result);
@@ -143,28 +141,24 @@ public class CommentController {
     }
 
     private CommentVO getCommentVo(Comment comment) {
-
         CommentVO commentVO = new CommentVO();
         commentVO.setId(comment.getId());
         commentVO.setBlogId(comment.getBlogId());
         commentVO.setCommentDate(comment.getCommentDate());
         commentVO.setContent(comment.getContent());
-
+        commentVO.setReaderId(comment.getReaderId());
         Reader reader = readerService.findById(comment.getReaderId());
         commentVO.setReaderAvatar(reader.getAvatar());
         commentVO.setReaderName(reader.getName());
-
         Integer replyCommentId = comment.getReplyCommentId();
         if (replyCommentId != null) {
             Comment replyComment = commentService.findById(replyCommentId);
             commentVO.setReceiverDate(replyComment.getCommentDate());
             commentVO.setReceiverContent(replyComment.getContent());
-
             Reader receiver = readerService.findById(replyComment.getReaderId());
             commentVO.setReceiverName(receiver.getName());
             commentVO.setReceiverAvatar(receiver.getAvatar());
         }
-
         return commentVO;
     }
 }
