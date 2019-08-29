@@ -132,7 +132,6 @@ public class WebConfig implements WebMvcConfigurer {
                                 return true;
                             }
                         }
-                        return false;
                     } else {
                         result.setCode(ResultCode.TOKEN_ERROR).setMessage("Token过期，请重新登录");
                     }
