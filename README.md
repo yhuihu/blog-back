@@ -8,12 +8,13 @@
 [blog.yhhu.xyz](http://blog.yhhu.xyz)
 ## 技术栈
 
-SpringBoot + Maven + Mybatis + PageHelper + MySQL + Redis
+SpringBoot + Maven + justauth + Mybatis + PageHelper + MySQL + Redis
 
 ## 传送门
 
 - [后端服务系统](https://github.com/yhuihu/blog-back)
 - [后台管理系统](https://github.com/yhuihu/yhhu_blog_admin)
 - [前台系统](https://github.com/yhuihu/yhhu_blog_front)
+- [justauth](https://github.com/justauth)
 
 > 注意：项目的图片上传到七牛云上了，所以图片路径为域名形式，可以根据自己的需求改写保存到本地

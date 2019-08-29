@@ -72,8 +72,6 @@ public class OauthController {
         Result result = new Result();
         AuthRequest authRequest = getAuthRequest(source);
         String authorizeUrl = authRequest.authorize(AuthStateUtils.createState());
-        System.out.println(authorizeUrl);
-//        response.sendRedirect(authorizeUrl);
         Map<String, String> map = new HashMap<>();
         map.put("redirectUrl", authorizeUrl);
         result.setData(map);
@@ -86,8 +84,6 @@ public class OauthController {
      */
     @RequestMapping("/callback/{source}")
     public void login(@PathVariable("source") String source, AuthCallback callback, HttpServletResponse response, HttpServletRequest request) throws IOException {
-        Result result = new Result();
-        System.out.println("进入callback：" + source + " callback params：" + JSONObject.toJSONString(callback));
         AuthRequest authRequest = getAuthRequest(source);
         AuthResponse targetResponse = authRequest.login(callback);
         JSONObject object = (JSONObject) JSONObject.parse(JSONObject.toJSONString(targetResponse));
@@ -121,7 +117,6 @@ public class OauthController {
 
     /**
      * 根据具体的授权来源，获取授权请求工具类
-     *
      * @param source
      * @return
      */
