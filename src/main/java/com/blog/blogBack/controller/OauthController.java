@@ -92,20 +92,22 @@ public class OauthController {
         AuthResponse targetResponse = authRequest.login(callback);
         JSONObject object = (JSONObject) JSONObject.parse(JSONObject.toJSONString(targetResponse));
         Integer uuid = Integer.valueOf((String) object.getJSONObject("data").get("uuid"));
-        Reader dataBaseUser = readerService.findBy("uuid",uuid);
-        Integer userId=0;
+        Reader dataBaseUser = readerService.findBy("uuid", uuid);
+        Integer userId = 0;
         if (dataBaseUser == null) {
-            dataBaseUser=new Reader();
-            String name=(String) object.getJSONObject("data").get("nickname");
+            dataBaseUser = new Reader();
+            String name = (String) object.getJSONObject("data").get("nickname");
             dataBaseUser.setName(name);
             dataBaseUser.setUuid(uuid);
             dataBaseUser.setAvatar((String) object.getJSONObject("data").get("avatar"));
             dataBaseUser.setIp(IpAddressUtil.getIpAdrress(request));
             readerService.save(dataBaseUser);
-            Reader newUser = readerService.findBy("uuid",uuid);
-            userId=newUser.getId();
-        }else {
-            userId=dataBaseUser.getId();
+            Reader newUser = readerService.findBy("uuid", uuid);
+            userId = newUser.getId();
+        } else {
+            dataBaseUser.setName((String) object.getJSONObject("data").get("nickname"));
+            dataBaseUser.setAvatar((String) object.getJSONObject("data").get("avatar"));
+            userId = dataBaseUser.getId();
         }
         response.sendRedirect(homeUrl + "?userId=" + userId + "&name=" + dataBaseUser.getName()
                 + "&avatar=" + dataBaseUser.getAvatar());
