@@ -88,13 +88,13 @@ public class CommentController {
         // 发送邮件通知管理员和被回复者
         User admin = userService.findById(1);
         String content = commentReaderDTO.getName() + "在《" + blog.getTitle() + "》下回复\n" + commentReaderDTO.getContent();
-        emailTool.sendSimpleMail(admin.getEmail(), "light blog评论", content);
+        emailTool.sendSimpleMail(admin.getEmail(), "Blog评论", content);
         if (receiver != null) { // 仅发给管理员
             // 通知被回复者
             // 仅当receiver开启了接受邮件并且填写了邮箱时发送邮件
             if ((receiver.getInform() == 1) && StringUtils.isNotBlank(receiver.getEmail())) {
                 content = commentReaderDTO.getName() + "在《" + blog.getTitle() + "》下回复了你:\n" + commentReaderDTO.getContent();
-                emailTool.sendSimpleMail(receiver.getEmail(), "light blog评论回复通知", content);
+                emailTool.sendSimpleMail(receiver.getEmail(), "Blog评论回复通知", content);
             }
         }
         return ResultGenerator.genSuccessResult();
