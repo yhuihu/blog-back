@@ -3,6 +3,7 @@ package com.blog.blogBack.util;
 import com.blog.blogBack.entity.SendComment;
 import com.blog.blogBack.service.SendCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,11 +14,15 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class SendEmailTasks {
+public class Tasks {
     @Autowired
     SendCommentService sendCommentService;
     @Autowired
     JavaMailSender javaMailSender;
+    @Value("${spring.datasource.username}")
+    private String dataBaseUserName;
+    @Value("${spring.datasource.password}")
+    private String dataBasePassword;
     @Scheduled(cron = "0 00 08 * * ? ")
     public void sendEmail() {
         System.out.println("现在是:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
@@ -39,4 +44,5 @@ public class SendEmailTasks {
         javaMailSender.send(message);
         System.out.println("今天的邮件已经发送完成了");
     }
+
 }
