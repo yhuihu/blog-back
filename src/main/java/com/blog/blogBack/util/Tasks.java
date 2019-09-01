@@ -2,6 +2,8 @@ package com.blog.blogBack.util;
 
 import com.blog.blogBack.entity.SendComment;
 import com.blog.blogBack.service.SendCommentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @Component
 public class Tasks {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     SendCommentService sendCommentService;
     @Autowired
@@ -66,5 +69,9 @@ public class Tasks {
         Process process = Runtime.getRuntime().exec(centOS_cmd);
         System.out.println("开始将数据库发送到管理员邮箱。");
         emailTool.sendAttachmentsMail(to,"数据库备份","当前时间为："+ new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()),fileUrl);
+        File file1=new File(fileUrl);
+        if(!file1.delete()){
+            logger.error("删除备份数据异常");
+        }
     }
 }
