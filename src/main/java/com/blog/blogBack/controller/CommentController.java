@@ -45,11 +45,17 @@ public class CommentController {
     @PostMapping("/add")
     public Result add(CommentReaderDTO commentReaderDTO, HttpServletRequest request) {
 
-        if (StringUtils.isEmpty(commentReaderDTO.getName())) return ResultGenerator.genFailResult("评论者名称不能为空！");
-        if (StringUtils.isEmpty(commentReaderDTO.getContent())) return ResultGenerator.genFailResult("评论内容不能为空！");
+        if (StringUtils.isEmpty(commentReaderDTO.getName())) {
+            return ResultGenerator.genFailResult("评论者名称不能为空！");
+        }
+        if (StringUtils.isEmpty(commentReaderDTO.getContent())) {
+            return ResultGenerator.genFailResult("评论内容不能为空！");
+        }
 
         Integer blogId = commentReaderDTO.getBlogId();
-        if (blogId == null) return ResultGenerator.genFailResult("blogId不能为空！");
+        if (blogId == null) {
+            return ResultGenerator.genFailResult("blogId不能为空！");
+        }
         Blog blog = blogService.findById(blogId);
         if (blog == null) {
             return ResultGenerator.genFailResult("不存在id为" + blogId + "的博客！");
@@ -111,13 +117,15 @@ public class CommentController {
     @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
         Comment comment = commentService.findById(id);
-        if (comment == null) return ResultGenerator.genFailResult("不存在id为" + id + "的评论！");
+        if (comment == null) {
+            return ResultGenerator.genFailResult("不存在id为" + id + "的评论！");
+        }
         CommentVO commentVO = getCommentVo(comment);
         return ResultGenerator.genSuccessResult(commentVO);
     }
 
     @GetMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         PageHelper.startPage(page, size, "comment_date desc");
         List<Comment> list = commentService.findAll();
         List<CommentVO> result = new ArrayList<>();
@@ -132,9 +140,13 @@ public class CommentController {
     }
 
     @GetMapping("/list/blog")
-    public Result listByBlogId(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size, Integer blogId) {
-        if (blogId == null) return ResultGenerator.genFailResult("blogId不能为空！");
-        if (blogService.findById(blogId) == null) return ResultGenerator.genFailResult("不存在id为" + blogId + "的博客！");
+    public Result listByBlogId(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Integer blogId) {
+        if (blogId == null) {
+            return ResultGenerator.genFailResult("blogId不能为空！");
+        }
+        if (blogService.findById(blogId) == null) {
+            return ResultGenerator.genFailResult("不存在id为" + blogId + "的博客！");
+        }
         PageHelper.startPage(page, size, "comment_date desc");
         List<Comment> list = commentService.findAllByBlogId(blogId);
         List<CommentVO> result = new ArrayList<>();
@@ -142,7 +154,7 @@ public class CommentController {
             result.add(getCommentVo(comment));
         }
         // 给前端的是VO，但需要分页
-        PageInfo pageInfo = new PageInfo(list);
+        PageInfo pageInfo = new PageInfo<>(list);
         pageInfo.setList(result);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
