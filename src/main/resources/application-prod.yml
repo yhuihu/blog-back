@@ -1,3 +1,5 @@
+server:
+  port: 8080
 blog:
   homeUrl: http://xxx/#/user
 databaseName: VueBlog

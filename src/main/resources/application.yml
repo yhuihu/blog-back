@@ -1,5 +1,3 @@
-server:
-  port: 8899
 #  servlet:
 #    context-path: /blog
 email:
@@ -17,6 +15,7 @@ spring:
   mail:
     default-encoding: utf-8
     host: smtp.qq.com
+    username: 1357958736@qq.com
     password: xxx
     properties:
       mail:
@@ -36,7 +35,6 @@ spring:
             required: true
           timeout: 10000
           writetimeout: 10000
-    username: xxx@qq.com
   mvc:
     static-path-pattern: /**
     throw-exception-if-no-handler-found: true
