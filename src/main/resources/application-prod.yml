@@ -14,9 +14,8 @@ mysql:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://xxx:3306/VueBlog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
-    username: xxx
-    password: xxx
+    url: jdbc:mysql://mysql:3306/VueBlog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: blog #database username
+    password: aaabbbcccddd123123 #database password
   redis:
-    host: xxx
-    password: xxx
+    host: redis
