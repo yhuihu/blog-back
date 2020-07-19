@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.yhhu.blog.mapper.BlogMapper">
+  <resultMap id="BaseResultMap" type="xyz.yhhu.blog.entity.Blog">
+    <!--@mbg.generated-->
+    <!--@Table blog-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="blog_image" jdbcType="VARCHAR" property="blogImage" />
+    <result column="original_url" jdbcType="VARCHAR" property="originalUrl" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, title, summary, create_date, update_date, click_count, comment_count, like_count,
+    tag, blog_image, original_url, `type`
+  </sql>
+</mapper>

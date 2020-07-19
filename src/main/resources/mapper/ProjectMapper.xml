@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.yhhu.blog.mapper.ProjectMapper">
+  <resultMap id="BaseResultMap" type="xyz.yhhu.blog.entity.Project">
+    <!--@mbg.generated-->
+    <!--@Table project-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="project_order" jdbcType="INTEGER" property="projectOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, url, image, project_order
+  </sql>
+</mapper>
