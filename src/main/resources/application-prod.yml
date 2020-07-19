@@ -1,0 +1,22 @@
+blog:
+  homeUrl: http://xxx/#/user
+databaseName: VueBlog
+justauth:
+  enabled: true
+  type:
+    github:
+      client-id: xxx
+      client-security: xxx
+      redirect-uri: http://xxx/blog/user/callback/github
+mysql:
+  dump:
+    location: /data/vue_blog_sql/
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://xxx:3306/VueBlog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: xxx
+    password: xxx
+  redis:
+    host: xxx
+    password: xxx
