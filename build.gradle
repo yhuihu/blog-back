@@ -1,6 +1,8 @@
 plugins {
     id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+//    google jib镜像构造工具
+    id 'com.google.cloud.tools.jib' version '2.4.0'
     id 'java'
 }
 
@@ -52,7 +54,16 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }
-
+jib {
+    container {
+        /**
+         * 设置jvm的启动参数
+         * user.timezone - 解决Java程序的时区问题
+         */
+        jvmFlags = ['-Duser.timezone=Asia/Shanghai']
+        mainClass="xyz.yhhu.blog.BlogBackApplication"
+    }
+}
 test {
     useJUnitPlatform()
 }

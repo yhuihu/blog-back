@@ -23,5 +23,5 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew jib -Djib.from.image= ${FROM_IMAGE} -Djib.from.auth.username=${DOCKER_USERNAME} -Djib.from.auth.password=${DOCKER_PASSWORD} -Djib.to.image=${TO_IMAGE} -Djib.to.auth.username=${DOCKER_USERNAME} -Djib.to.auth.password=${DOCKER_PASSWORD}
-      
+      run: gradlew jib -Djib.from.image= ${FROM_IMAGE} -Djib.from.auth.username=${DOCKER_USERNAME} -Djib.from.auth.password=${DOCKER_PASSWORD} -Djib.to.image=${TO_IMAGE} -Djib.to.auth.username=${DOCKER_USERNAME} -Djib.to.auth.password=${DOCKER_PASSWORD}
+
