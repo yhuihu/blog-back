@@ -1,0 +1,29 @@
+version: "3.1"
+services:
+  springboot:
+    image: registry.cn-hangzhou.aliyuncs.com/yhhu/blog_api
+    environment:
+      TZ: "Asia/Shanghai"
+    ports:
+      - "8899:8080"
+    links:
+      - mysql:mysql
+      - redis:redis
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+  redis:
+    image: redis
+    volumes:
+      - "./storages/redis/data:/data"
+  mysql:
+    image: mysql
+    environment:
+      TZ: "Asia/Shanghai"
+      MYSQL_DATABASE: VueBlog
+      MYSQL_USER: blog
+      MYSQL_PASSWORD: aaabbbcccddd123123
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - "./storages/mysql/data:/var/lib/mysql"

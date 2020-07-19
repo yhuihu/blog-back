@@ -3,10 +3,14 @@ server:
 #  servlet:
 #    context-path: /blog
 email:
-  adminEmail: xxx@qq.com
+  adminEmail: 1357958736@qq.com
 spring:
   profiles:
     active: dev
+  flyway:
+    locations: ["classpath:db"]
+    baseline-on-migrate: true
+    placeholder-prefix: ${} # 占位符去掉，数据库数据存在冲突
   jackson:
     date-format: yyyy-MM-dd HH:mm
     time-zone: GMT+8

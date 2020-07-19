@@ -13,12 +13,11 @@ mysql:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://xxx:3306/VueBlog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
-    username: xxx
-    password: xxx
+    url: jdbc:mysql://my.service.com:3306/VueBlog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
   redis:
-    host: xxx
-    password: xxx
+    host: localhost
 logging:
   level:
     xyz.yhhu.blog.mapper: debug

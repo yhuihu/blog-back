@@ -34,6 +34,8 @@ dependencies {
     compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.3.2'
 //    mysql
     runtimeOnly 'mysql:mysql-connector-java'
+//    flyway
+    compile 'org.flywaydb:flyway-core'
 //    redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 //    邮件
