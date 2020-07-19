@@ -8,7 +8,7 @@
 [blog.yhhu.xyz](http://blog.yhhu.xyz)
 ## 技术栈
 
-SpringBoot + Maven + justauth + Mybatis + PageHelper + MySQL + Redis
+SpringBoot + gradle + justauth + Mybatis plus + MySQL + Redis
 
 ## 传送门
 
