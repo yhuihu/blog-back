@@ -6,7 +6,7 @@ email:
   adminEmail: 1357958736@qq.com
 spring:
   profiles:
-    active: dev
+    active: prod
   flyway:
     locations: ["classpath:db"]
     baseline-on-migrate: true
