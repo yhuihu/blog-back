@@ -38,6 +38,9 @@ dependencies {
     compile 'org.flywaydb:flyway-core'
 //    redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//    oss
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.10.2'
 //    邮件
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 //    三方登录
@@ -54,9 +57,7 @@ dependencies {
 //    热部署
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 //    单元测试
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 jib {
     container {
