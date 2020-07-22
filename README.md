@@ -17,4 +17,4 @@ SpringBoot + gradle + justauth + Mybatis plus + MySQL + Redis
 - [前台系统](https://github.com/yhuihu/yhhu_blog_front)
 - [justauth](https://github.com/justauth)
 
-> 注意：项目的图片上传到七牛云上了，所以图片路径为域名形式，可以根据自己的需求改写保存到本地
+> 注意：项目的图片上传到阿里云OSS，所以图片路径为域名形式，可以根据自己的需求改写保存到本地
