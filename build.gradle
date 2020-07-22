@@ -42,6 +42,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 //    三方登录
     implementation group: 'com.xkcoding', name: 'justauth-spring-boot-starter', version: '1.0.1'
+//    加盐加密
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.11'
 //    lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

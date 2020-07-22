@@ -14,11 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.yhhu.blog.entity.Blog;
 import xyz.yhhu.blog.entity.BlogContent;
+import xyz.yhhu.blog.entity.TagName;
+import xyz.yhhu.blog.entity.TypeName;
 import xyz.yhhu.blog.entity.vo.BlogVO;
 import xyz.yhhu.blog.framework.Result;
 import xyz.yhhu.blog.framework.ResultGenerator;
 import xyz.yhhu.blog.service.BlogContentService;
 import xyz.yhhu.blog.service.BlogService;
+import xyz.yhhu.blog.service.TagNameService;
+import xyz.yhhu.blog.service.TypeNameService;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Tiger
@@ -32,6 +39,10 @@ public class BlogController {
     private BlogService blogService;
     @Autowired
     private BlogContentService blogContentService;
+    @Autowired
+    private TagNameService tagNameService;
+    @Autowired
+    private TypeNameService typeNameService;
 
     @GetMapping()
     public Result<IPage<Blog>> list(@RequestParam(defaultValue = "1") Integer page,
@@ -61,14 +72,27 @@ public class BlogController {
 
     @GetMapping("{id}/detail")
     public Result<BlogVO> detail(@PathVariable(name = "id") Integer id) {
-        Result<BlogVO> result = new Result<>();
         Blog blog = blogService.getById(id);
         BlogContent blogContent = blogContentService.getById(id);
         BlogVO blogVO = new BlogVO();
         BeanUtils.copyProperties(blog, blogVO);
         blogVO.setContent(blogContent.getContent());
-        result.setData(blogVO);
-        return result;
+        // 设置博客标签
+        List<TagName> tags = tagNameService.listByIds(Arrays.asList(blog.getTag().split(",")));
+        StringBuilder sb = new StringBuilder();
+        for (TagName tag : tags) {
+            sb.append(tag.getName()).append(",");
+        }
+        String tagStr = sb.toString();
+        if (StringUtils.isEmpty(tagStr)) {
+            blogVO.setTag("");
+        } else {
+            blogVO.setTag(tagStr.substring(0, tagStr.length() - 1));
+        }
+        // 设置博客类型
+        TypeName blogType = typeNameService.getById(blog.getType());
+        blogVO.setTypeName(blogType.getName());
+        return ResultGenerator.genSuccessResult(blogVO);
     }
 
     @GetMapping("about")

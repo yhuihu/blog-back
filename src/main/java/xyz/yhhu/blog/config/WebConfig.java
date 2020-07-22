@@ -15,7 +15,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -29,10 +28,8 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -111,29 +108,33 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new HandlerInterceptorAdapter() {
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-                Result result = new Result();
-                String token = request.getHeader("X-Token");
-                result.setCode(ResultCode.TOKEN_ERROR).setMessage("请先登录");
-                if (token != null) {
-                    List<String> list = redisTemplate.opsForList().range(token, 0, -1);
-                    String ipAddr = IpAddressUtil.getIpAddress(request);
-                    if (list == null) {
-                        list = new ArrayList<>();
-                    }
-                    if (!list.isEmpty()) {
-                        for (String target : list) {
-                            if (target.equals(ipAddr)) {
-                                return true;
-                            }
+                // 过滤预请求
+                if (!request.getMethod().equals("OPTIONS")) {
+                    Result result = new Result();
+                    String token = request.getHeader("X-Token");
+                    result.setCode(ResultCode.TOKEN_ERROR).setMessage("请先登录");
+                    if (token != null) {
+                        List<String> list = redisTemplate.opsForList().range(token, 0, -1);
+                        String ipAddr = IpAddressUtil.getIpAddress(request);
+                        if (list == null) {
+                            list = new ArrayList<>();
                         }
-                    } else {
-                        result.setCode(ResultCode.TOKEN_ERROR).setMessage("Token过期，请重新登录");
+                        if (!list.isEmpty()) {
+                            for (String target : list) {
+                                if (target.equals(ipAddr)) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            result.setCode(ResultCode.TOKEN_ERROR).setMessage("Token过期，请重新登录");
+                        }
                     }
+                    tools.responseResult(response, result);
+                    logger.info("重定向到登录界面");
+                    return false;
                 }
-                tools.responseResult(response, result);
-                logger.info("重定向到登录界面");
-                return false;
+                return true;
             }
-        }).addPathPatterns("/admin/**").excludePathPatterns("/admin/admin/login", "/admin/admin/detail");
+        }).addPathPatterns("/admin/**").excludePathPatterns("/admin");
     }
 }

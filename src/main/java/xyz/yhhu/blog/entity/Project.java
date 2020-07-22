@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -21,12 +23,14 @@ public class Project implements Serializable {
      * 名称
      */
     @TableField(value = "name")
+    @NotEmpty(message = "项目名称不能为空！")
     private String name;
 
     /**
      * 项目地址
      */
     @TableField(value = "url")
+    @NotEmpty(message = "项目链接不能为空！")
     private String url;
 
     /**
@@ -39,5 +43,6 @@ public class Project implements Serializable {
      * 项目顺序
      */
     @TableField(value = "project_order")
+    @NotNull(message = "项目次序不能为空！")
     private Integer projectOrder;
 }
