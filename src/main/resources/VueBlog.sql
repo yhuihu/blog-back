@@ -279,6 +279,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'yhhu', '😄普通大学生，技术爱好者😄', 'http://yhhu.xyz/ft1Uo1DThKrCsVGosrEVxuGK', 'fT28i22g7aee7ref0ff0950720e00ba0e901b0f404c0780f', 'Tiger', '1357958736@qq.com');
+INSERT INTO `user` VALUES (1, 'yhhu', '😄普通大学生，技术爱好者😄', 'http://yhhu.xyz/ft1Uo1DThKrCsVGosrEVxuGK', 'fa5ad45m23i51n6401c0b30af0770b00e50f90d80380810f', 'admin', '1357958736@qq.com');
 
 SET FOREIGN_KEY_CHECKS = 1;

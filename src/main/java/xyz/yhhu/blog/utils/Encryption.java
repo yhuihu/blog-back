@@ -65,7 +65,7 @@ public class Encryption {
 
     public static void main(String[] args) {
         // 加密+加盐
-        String password1 = generate("Tiger","yang526163");
+        String password1 = generate("admin","123456");
         System.out.println("结果：" + password1 + "   长度："+ password1.length());
         // 解码
         System.out.println(verify("123456", password1));
