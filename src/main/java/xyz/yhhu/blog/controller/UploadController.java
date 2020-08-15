@@ -29,7 +29,7 @@ public class UploadController {
     public Result upload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         if (multipartFile != null) {
             FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
-            String fileUrl = uploadService.uploadFile(inputStream, Tools.getUUID() + Tools.getUUID()+ Tools.getUUID());
+            String fileUrl = uploadService.uploadFile(inputStream, Tools.getUUID() + Tools.getUUID() + Tools.getUUID() + ".jpg");
             Map<String, String> resultMap = new HashMap<>(1);
             if (fileUrl == null) {
                 return ResultGenerator.genFailResult("服务器繁忙，请稍后重试！");
