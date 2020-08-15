@@ -26,6 +26,6 @@ public class UploadService {
      */
     public String uploadFile(FileInputStream file, String key) throws NullPointerException {
         ossClient.putObject("zsifan", key, file);
-        return "xxx/" + key;
+        return "https://yhhu.oss-cn-shenzhen.aliyuncs.com/" + key;
     }
 }
