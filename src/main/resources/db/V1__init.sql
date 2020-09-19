@@ -1,19 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : blog
- Source Server Type    : MySQL
- Source Server Version : 80021
- Source Host           : 120.27.243.204:10001
- Source Schema         : VueBlog
-
- Target Server Type    : MySQL
- Target Server Version : 80021
- File Encoding         : 65001
-
- Date: 08/08/2020 12:30:35
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -171,30 +155,6 @@ INSERT INTO `comment` VALUES (109, 37, '多线程爬虫太狠了', '2019-08-27 1
 INSERT INTO `comment` VALUES (111, 37, '本文章demo已经上传github\nhttps://github.com/yhuihu/Java_Spilder', '2019-08-28 10:06:07', 138, NULL);
 INSERT INTO `comment` VALUES (112, 37, '牛批', '2019-08-28 17:11:40', 139, NULL);
 INSERT INTO `comment` VALUES (139, 62, '<img src=1 onerror=alert(1)>', '2020-07-15 21:29:07', 139, NULL);
-
--- ----------------------------
--- Table structure for flyway_schema_history
--- ----------------------------
-DROP TABLE IF EXISTS `flyway_schema_history`;
-CREATE TABLE `flyway_schema_history`  (
-                                          `installed_rank` int(0) NOT NULL,
-                                          `version` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-                                          `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                                          `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                                          `script` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                                          `checksum` int(0) NULL DEFAULT NULL,
-                                          `installed_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                                          `installed_on` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-                                          `execution_time` int(0) NOT NULL,
-                                          `success` tinyint(1) NOT NULL,
-                                          PRIMARY KEY (`installed_rank`) USING BTREE,
-                                          INDEX `flyway_schema_history_s_idx`(`success`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of flyway_schema_history
--- ----------------------------
-INSERT INTO `flyway_schema_history` VALUES (1, '1', 'init', 'SQL', 'V1__init.sql', 2120726760, 'blog', '2020-07-23 14:17:16', 1203, 1);
 
 -- ----------------------------
 -- Table structure for link
