@@ -97,7 +97,7 @@ public class BlogController {
 
     @GetMapping("about")
     public Result<BlogVO> about() {
-        return detail(1);
+        return detail(10);
     }
 
     @GetMapping("sort")
